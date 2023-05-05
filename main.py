@@ -33,6 +33,8 @@ def histogram(data):
     sns.histplot(data=data_species, bins=num_bins)
     st.pyplot()
 
+st.set_option('deprecation.showPyplotGlobalUse', False)
+
 st.title("Example Healthcare App")
 st.write("Welcome to the example healthcare app. This app demonstrates basic data visualization and exploration using a sample dataset.")
 
