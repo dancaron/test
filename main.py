@@ -52,6 +52,21 @@ st.sidebar.subheader("Choose a visualization:")
 plot_options = ["Scatter Plot", "Bar Chart", "Histogram"]
 plot_choice = st.sidebar.selectbox("Select a plot type:", plot_options)
 
+min_age = st.sidebar.slider("Minimum Age", int(patient_data["Age"].min()), int(patient_data["Age"].max()), int(patient_data["Age"].min()))
+max_age = st.sidebar.slider("Maximum Age", int(patient_data["Age"].min()), int(patient_data["Age"].max()), int(patient_data["Age"].max()))
+
+# Filter data by gender
+gender = st.sidebar.selectbox("Gender", ["All", "Male", "Female"])
+
+# Apply filters
+filtered_data = patient_data[(patient_data["Age"] >= min_age) & (patient_data["Age"] <= max_age)]
+if gender != "All":
+    filtered_data = filtered_data[filtered_data["Gender"] == gender]
+
+# Display filtered data
+st.write("Filtered Patient Data:")
+st.write(filtered_data)
+
 if plot_choice == "Scatter Plot":
     scatter_plot(data)
 elif plot_choice == "Bar Chart":
